@@ -1,0 +1,52 @@
+.CounterDigits {
+	clear: left;
+	position: relative;
+	margin: 0;
+	width: 20px;
+	padding: 0;
+	height: 20px;
+}
+
+.FloatingRectangleContentContainer {
+	color: #08233e;
+	width: 230px;
+	font-family: Futura, 'Century Gothic', AppleGothic, sans-serif;
+	font-size: 120%;
+	padding: 14px;
+	background: #ffcc00;
+	background-color: #EBFCEC;
+	border: 1px solid #00990D;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border-bottom: 1px solid #006B09;
+}
+
+.UpdateLayoutButton {
+	font-size: 110%;
+	border: 1px solid #8FA9FF;
+	padding: 3px;
+	text-decoration: none;
+	background: -webkit-gradient(linear, left top, left bottom, from(#F7F7F7), to(#D6D6D6));
+	color: #08233e;
+}
+
+.TextInputBox {
+	font-size: 105%;
+	width: 200px;
+	text-align: center;
+	background-color: #F5FAFF;
+}
+
+#NumberSeriesContainer {
+	position: relative;
+	left: 115%;
+	top: -710px;
+	height: 60px;
+	column-fill: balance;
+	column-width: 100px;
+	-moz-column-fill: balance;
+	-moz-column-width: 100px;
+	-webkit-column-fill: balance;
+	-webkit-column-width: 100px;
+}

@@ -1,7 +1,10 @@
-<html>
-<!-- 
+<!--
 Copyright Nate Sutton 2013
-Site version 1.0
+Version 1.0
+This web application is designed to allow users to customize the layout of a series of numbers
+that is generated.  Users can set the column minimum height and maximum column number through
+the input fields on the left of the page.  Pressing the “Start/Stop Counter” toggles the number
+series generation.
 
 References:
 http://stackoverflow.com/questions/121817/replace-text-inside-a-div-element
@@ -11,106 +14,38 @@ http://stackoverflow.com/questions/10328210/javascriptdiv-appendchild
 http://stackoverflow.com/questions/14680314/css-how-to-make-a-list-wrap-vertically
 http://www.webdeveloper.com/forum/showthread.php?173631-Set-DIV-height-with-JavaScript
 -->
-<head>
-<style type="text/css">
-.CounterDigits { clear: left; position: relative; margin: 0; width:20px; padding: 0; height:20px;}
 
-.FloatingRectangleContentContainer {
-  color:#08233e;
-  width:225px;
-  font: Futura, 'Century Gothic', AppleGothic, sans-serif;
-  font-size:125%;
-  padding:14px;
-  background:#ffcc00;
-  background-color:#EBFCEC;
-  border:1px solid #00990D;
-  -moz-border-radius:10px;
-  -webkit-border-radius:10px;
-  border-radius:10px;
-  border-bottom:1px solid #006B09;
-  -moz-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
-  -webkit-box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.5);
-  cursor:pointer;
-}
-
-.UpdateLayoutButton {
-font-size:110%;border:1px solid #8FA9FF;padding:3px;text-decoration: none;background: -webkit-gradient(linear, left top, left bottom, from(#F7F7F7), to(#D6D6D6));color:#08233e;
-}
-
-.TextInputBox {
-font-size:105%;
-width: 200px;
-text-align:center;
-}
-</style>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>
-/* JavaScript was chosen for the counter because of its asyncronous page updating capabilities */
-ActivateCounterSwitch = false;
-Counter=0;
-function test5() {
-if (ActivateCounterSwitch == true) {ActivateCounterSwitch = false}
-else if (ActivateCounterSwitch == false) {ActivateCounterSwitch = true}
-}
-window.setInterval("IncreaseItemsList()", 300);
-
-function IncreaseItemsList() {
-if (ActivateCounterSwitch == true) {
-var MinimumColumnHeightUserInput = $('input#MinimumColumnHeight').val();
-var MaximumNumberOfColumnsUserInput = $('input#MaximumNumberOfColumns').val();
-Counter++;
-var iDiv = document.createElement('div');
-iDiv.innerHTML=Counter;
-iDiv.className='CounterDigits';
-document.getElementById('container').appendChild(iDiv);
-
-if ((Counter%MinimumColumnHeightUserInput==0)&(Counter<=(MinimumColumnHeightUserInput*MaximumNumberOfColumnsUserInput))) {
-$('div#container').css({height:(MinimumColumnHeightUserInput*20)+'px'});
-}
-else if ((Counter%(Math.floor(Counter/MinimumColumnHeightUserInput))==0)&(Counter<(MinimumColumnHeightUserInput*MaximumNumberOfColumnsUserInput))) {
-$('div#container').css({height:($('div#container').height()+20)+'px'});
-}
-else if (Counter>(MinimumColumnHeightUserInput*MaximumNumberOfColumnsUserInput)) {
-$('div#container').css({height:((MinimumColumnHeightUserInput*20)+((Math.floor((Counter-(MinimumColumnHeightUserInput*MaximumNumberOfColumnsUserInput))/MaximumNumberOfColumnsUserInput)+1)*20))+'px'});
-}
-
-}
-}
-</script>
-</head>
 <body bgcolor="F5FAFF">
-<div style="position:absolute;width:100%;text-align:center;"><h1>Number Series Layout Customization</h1></div>
-<div style="position:absolute;left:5%;top:100px;">
-<div style="position:relative;text-align:center;" class="FloatingRectangleContentContainer">
-This web application generates a series of numbers when the "Start/Stop Counter" button is pressed.  The shape that the series of numbers forms can be customized by entering in numbers in the text boxes below, at any point when the counter is running a change in the number parameters will adjust the shape.  Refresh this page to reset the number series.
-</div>
-<br><br>
-<div style="position:relative;text-align:center;" class="FloatingRectangleContentContainer">
-Minimum Column Height:<br><input type="text" id="MinimumColumnHeight" value="3" class="TextInputBox">
-<br>Maximum Column Number:<br><input type="text" id="MaximumNumberOfColumns" value="3" class="TextInputBox">
-<br><br><a href="javascript:test5()" class="UpdateLayoutButton">Start/Stop Counter</a>
-</div>
-<br><br>
-<div style="position:relative;text-align:center;" class="FloatingRectangleContentContainer"><a href="http://github.com/nmsutton/ColumnLayoutCustomizer"><img src="http://imageshack.us/scaled/large/38/githublink2.jpg" style=""></a></div>
-<div id="container" style="position:relative;left:100%;top:-625px;min-width:300px;
-    height: 60px;
-    column-fill: balance;
-    column-width: 100px;
-    column-height: 40px;
-    column-gap: 0px;
-    -moz-column-fill: balance;
-    -moz-column-width: 100px;
-    -moz-column-height: 40px;
-    -moz-column-gap: 0px;
-    -webkit-column-fill: balance;
-    -webkit-column-width: 100px;
-    -webkit-column-height: 40px;
-    -webkit-column-gap: 0px;
 
-	-webkit-column-break-inside: avoid;
-	-moz-column-break-inside: avoid;
-	column-break-inside: avoid;"></div>
-</div>
+	<div style="position:absolute;width:100%;text-align:center;">
+		<h1>Number Series Layout Customization</h1>
+	</div>
+	<div style="position:absolute;left:5%;top:100px;">
+		<div style="position:relative;text-align:center;" class="FloatingRectangleContentContainer">
+			This web application generates a series of numbers when the "Start/Stop Counter" button is
+			pressed.  The shape that the series of numbers forms can be customized by entering in numbers
+			in the text boxes below, at any point when the counter is running a change in the number
+			parameters will adjust the shape.  Refresh this page to reset the number series.
+		</div>
+		<br>
+		<br>
+		<div style="position:relative;text-align:center;" class="FloatingRectangleContentContainer">
+			Minimum Column Height:
+			<br>
+			<input type="text" id="MinimumColumnHeight" value="3" class="TextInputBox">
+			<br>
+			Maximum Column Number:
+			<br>
+			<input type="text" id="MaximumNumberOfColumns" value="3" class="TextInputBox">
+			<br>
+			<br>
+			<a href="javascript:NumberSeriesGenerationToggole()" class="UpdateLayoutButton">Start/Stop Counter</a>
+		</div>
+		<br>
+		<br>
+		<div style="position:relative;text-align:center;" class="FloatingRectangleContentContainer">
+			<a href="http://github.com/nmsutton/ColumnLayoutCustomizer"> <img src="http://imageshack.us/scaled/large/38/githublink2.jpg" style=""></a>
+		</div>
+		<div id="NumberSeriesContainer"></div>
+	</div>
 </body>
