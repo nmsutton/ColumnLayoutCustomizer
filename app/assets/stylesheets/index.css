@@ -1,10 +1,10 @@
 .CounterDigits {
-	clear: left;
 	position: relative;
 	margin: 0;
 	width: 20px;
 	padding: 0;
 	height: 20px;
+	display: block;
 }
 
 .FloatingRectangleContentContainer {
@@ -40,13 +40,17 @@
 
 #NumberSeriesContainer {
 	position: relative;
-	left: 115%;
-	top: -710px;
+	left: 450px;
+	top: 100px;
+	width: 300px;
 	height: 60px;
-	column-fill: balance;
-	column-width: 100px;
-	-moz-column-fill: balance;
-	-moz-column-width: 100px;
-	-webkit-column-fill: balance;
-	-webkit-column-width: 100px;
+	column-count: 5;
+	-moz-column-count: 5;
+	-webkit-column-count: 5;
+	column-break-inside: avoid;
+	-moz-column-break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+	column-fill: auto;
+    -moz-column-fill: auto;
+    -webkit-column-fill: auto;
 }

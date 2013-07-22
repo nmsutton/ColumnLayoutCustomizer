@@ -11,6 +11,7 @@
 
 ActivateCounterSwitch = false;
 Counter = 0;
+
 function NumberSeriesGenerationToggole() {
 	if (ActivateCounterSwitch == true) {
 		ActivateCounterSwitch = false
@@ -18,8 +19,6 @@ function NumberSeriesGenerationToggole() {
 		ActivateCounterSwitch = true
 	}
 }
-
-window.setInterval("IncreaseItemsList()", 300);
 
 function IncreaseItemsList() {
 	if (ActivateCounterSwitch == true) {
@@ -31,7 +30,7 @@ function IncreaseItemsList() {
 		iDiv.className = 'CounterDigits';
 		document.getElementById('NumberSeriesContainer').appendChild(iDiv);
 
-		if ((Counter % MinimumColumnHeightUserInput == 0) & (Counter <= (MinimumColumnHeightUserInput * MaximumNumberOfColumnsUserInput))) {
+		if (((Counter % MinimumColumnHeightUserInput == 0) & (Counter <= (MinimumColumnHeightUserInput * MaximumNumberOfColumnsUserInput)))|(Counter < (MinimumColumnHeightUserInput))) {
 			$('div#NumberSeriesContainer').css({
 				height : (MinimumColumnHeightUserInput * 20) + 'px'
 			});
@@ -44,6 +43,7 @@ function IncreaseItemsList() {
 				height : ((MinimumColumnHeightUserInput * 20) + ((Math.floor((Counter - (MinimumColumnHeightUserInput * MaximumNumberOfColumnsUserInput)) / MaximumNumberOfColumnsUserInput) + 1) * 20)) + 'px'
 			});
 		}
-
 	}
 }
+
+window.setInterval("IncreaseItemsList()", 300);
