@@ -27,6 +27,7 @@
 	border: 1px solid #8FA9FF;
 	padding: 3px;
 	text-decoration: none;
+	background-color: #EBEBEB;
 	background: -webkit-gradient(linear, left top, left bottom, from(#F7F7F7), to(#D6D6D6));
 	color: #08233e;
 }
@@ -51,6 +52,6 @@
 	-moz-column-break-inside: avoid;
 	-webkit-column-break-inside: avoid;
 	column-fill: auto;
-    -moz-column-fill: auto;
-    -webkit-column-fill: auto;
+	-moz-column-fill: auto;
+	-webkit-column-fill: auto;
 }
