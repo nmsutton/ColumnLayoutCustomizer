@@ -1,10 +1,16 @@
 .CounterDigits {
 	position: relative;
 	margin: 0;
-	width: 20px;
+	width: 70px;
 	padding: 0;
-	height: 20px;
+	height: 50px;
+	font-size: 150%;
 	display: block;
+	vertical-align:middle;
+	line-height:50px;
+	text-align:center;
+	background-color: #006B09;
+	background-image: url(/assets/rectangle.png)
 }
 
 .FloatingRectangleContentContainer {
@@ -20,6 +26,7 @@
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	border-bottom: 1px solid #006B09;
+	text-align:center;
 }
 
 .UpdateLayoutButton {
@@ -42,13 +49,13 @@
 
 #NumberSeriesContainer {
 	position: relative;
-	left: 450px;
+	left: 380px;
 	top: 100px;
-	width: 300px;
+	width: 150px;
 	height: 60px;
-	column-count: 5;
-	-moz-column-count: 5;
-	-webkit-column-count: 5;
+	column-count: 2;
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
 	column-break-inside: avoid;
 	-moz-column-break-inside: avoid;
 	-webkit-column-break-inside: avoid;
