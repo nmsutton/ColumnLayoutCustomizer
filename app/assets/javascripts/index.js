@@ -75,8 +75,8 @@ function RelabelNumberSeriesElements(MinimumColumnHeightUserInput, MaximumNumber
 	var IndividualNumberContainerWidth = $('.CounterDigits').width();
 	var IndividualNumberContainerHeight = $('.CounterDigits').height();
 	for (var NumberSeriesIndex = 0; NumberSeriesIndex < ChildrenOfNumberSeriesContainer.length; NumberSeriesIndex += 1) {
-		var CurrentColumn = ChildrenOfNumberSeriesContainer[NumberSeriesIndex].offsetLeft / IndividualNumberContainerWidth
-		var CurrentRow = ChildrenOfNumberSeriesContainer[NumberSeriesIndex].offsetTop / IndividualNumberContainerHeight
+		var CurrentColumn = Math.ceil(ChildrenOfNumberSeriesContainer[NumberSeriesIndex].offsetLeft / IndividualNumberContainerWidth)
+		var CurrentRow = Math.ceil(ChildrenOfNumberSeriesContainer[NumberSeriesIndex].offsetTop / IndividualNumberContainerHeight)
 		var ScaledSizeOfColumns = HeightOfEntireNumberContainer / IndividualNumberContainerHeight
 
 		if (ChildrenOfNumberSeriesContainer.length < (MinimumColumnHeightUserInput * MaximumNumberOfColumnsUserInput)) {
