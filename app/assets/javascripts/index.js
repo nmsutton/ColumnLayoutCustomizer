@@ -1,6 +1,6 @@
 /*
  * Copyright Nate Sutton 2013
- * Version 1.0
+ * Version 1.1
  * This code includes "window.setInterval" to poll the page every 300 milliseconds to check if the number
  * counter generation toggle has been activated.  If it has than the current minimum column height and
  * maximum column number are stored.  Those stored values are used as instructions about what layout
@@ -15,7 +15,7 @@
 ActivateCounterSwitch = false;
 Counter = 0;
 
-function NumberSeriesGenerationToggole() {
+function NumberSeriesGenerationToggle() {
 	if (ActivateCounterSwitch == true) {
 		ActivateCounterSwitch = false
 	} else if (ActivateCounterSwitch == false) {
@@ -91,7 +91,7 @@ function RelabelNumberSeriesElements(MinimumColumnHeightUserInput, MaximumNumber
 		if ((CurrentColumn > ElementsInLastRow) & !(CompleteRectangleShapeLayoutIsPresent) & !(ElementsInLastRow == 0)) {
 			NumberSeriesElement = NumberSeriesElement - (CurrentColumn - ElementsInLastRow);
 		}
-		ChildrenOfNumberSeriesContainer[NumberSeriesIndex].innerHTML = NumberSeriesElement;
+		ChildrenOfNumberSeriesContainer[NumberSeriesIndex].innerHTML = Math.ceil(NumberSeriesElement);
 	}
 }
 
