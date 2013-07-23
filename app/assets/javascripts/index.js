@@ -1,7 +1,7 @@
 /*
  * Copyright Nate Sutton 2013
  * Version 1.1
- * This code includes "window.setInterval" to poll the page every 300 milliseconds to check if the number
+ * This code includes "setInterval" to poll the page every 300 milliseconds to check if the number
  * counter generation toggle has been activated.  If it has than the current minimum column height and
  * maximum column number are stored.  Those stored values are used as instructions about what layout
  * the generated numbers should be in.  Calculations are run based on those values to create a container
@@ -10,20 +10,26 @@
  *
  * References:
  * http://stackoverflow.com/questions/1829925/javascript-getelementbyid-not-working
+ * http://techblog.shaneng.net/2005/04/javascript-setinterval-problem.html
  */
 
-ActivateCounterSwitch = false;
-Counter = 0;
+var ActivateCounterSwitch = false;
+var Counter = 0;
 
 function NumberSeriesGenerationToggle() {
 	if (ActivateCounterSwitch == true) {
-		ActivateCounterSwitch = false
+		ActivateCounterSwitch = false;
+		clearInterval(this.NumberSeriesGenerationTimer);
 	} else if (ActivateCounterSwitch == false) {
-		ActivateCounterSwitch = true
+		var self = this;
+		ActivateCounterSwitch = true;
+		this.NumberSeriesGenerationTimer = setInterval(function() {
+			IncreaseNumberSeries();
+		}, 300);
 	}
 }
 
-function IncreaseItemsList() {
+function IncreaseNumberSeries() {
 	/* This method uses the user input of minimum column height and maximum column number to establish the
 	 * layout shape of the number series, the series is bound to the container that is resized here.  The
 	 * shape's design is customized specifcally for the series reaching the values set by the user's
@@ -39,12 +45,7 @@ function IncreaseItemsList() {
 		ContainerForIndividualNumber.className = 'CounterDigits';
 		document.getElementById('NumberSeriesContainer').appendChild(ContainerForIndividualNumber);
 
-		if (Counter == (MinimumColumnHeightUserInput * 2)) {
-			$('div#NumberSeriesContainer').css({
-				height : (MinimumColumnHeightUserInput * IndividualNumberContainerHeight) + 'px',
-				width : ($('div#NumberSeriesContainer').width() + IndividualNumberContainerWidth) + 'px'
-			});
-		} else if ((Counter > (MinimumColumnHeightUserInput * 2)) & (Counter < (MinimumColumnHeightUserInput * MaximumNumberOfColumnsUserInput))) {
+		if ((Counter >= (MinimumColumnHeightUserInput * 2)) & (Counter < (MinimumColumnHeightUserInput * MaximumNumberOfColumnsUserInput))) {
 			$('div#NumberSeriesContainer').css({
 				height : (Math.ceil(Counter / (Math.floor(Counter / MinimumColumnHeightUserInput))) * IndividualNumberContainerHeight) + 'px',
 				width : (Math.floor(Counter / MinimumColumnHeightUserInput) * IndividualNumberContainerWidth) + 'px'
@@ -62,9 +63,9 @@ function IncreaseItemsList() {
 
 function RelabelNumberSeriesElements(MinimumColumnHeightUserInput, MaximumNumberOfColumnsUserInput) {
 	/* The number labels in the series are dynamically adjusted here based on the user's parameters and
-	 * quantity of numbers present.  The numbers are labeled in a grid shape and an adustment is made 
-	 * if the last row of the number series is not a full row of numbers.  The html object positioning 
-	 * information is used to detect where in the grid the numbers are and they are relabeled based on 
+	 * quantity of numbers present.  The numbers are labeled in a grid shape and an adustment is made
+	 * if the last row of the number series is not a full row of numbers.  The html object positioning
+	 * information is used to detect where in the grid the numbers are and they are relabeled based on
 	 * their locations.  */
 	var NumberSeriesParentContainer = document.getElementById('NumberSeriesContainer');
 	var ChildrenOfNumberSeriesContainer = NumberSeriesParentContainer.getElementsByTagName('div');
@@ -75,6 +76,7 @@ function RelabelNumberSeriesElements(MinimumColumnHeightUserInput, MaximumNumber
 	var IndividualNumberContainerWidth = $('.CounterDigits').width();
 	var IndividualNumberContainerHeight = $('.CounterDigits').height();
 	for (var NumberSeriesIndex = 0; NumberSeriesIndex < ChildrenOfNumberSeriesContainer.length; NumberSeriesIndex += 1) {
+		// Math.ceil() are used below to avoid a rounding error observed in IE 10.
 		var CurrentColumn = Math.ceil(ChildrenOfNumberSeriesContainer[NumberSeriesIndex].offsetLeft / IndividualNumberContainerWidth)
 		var CurrentRow = Math.ceil(ChildrenOfNumberSeriesContainer[NumberSeriesIndex].offsetTop / IndividualNumberContainerHeight)
 		var ScaledSizeOfColumns = HeightOfEntireNumberContainer / IndividualNumberContainerHeight
@@ -94,5 +96,3 @@ function RelabelNumberSeriesElements(MinimumColumnHeightUserInput, MaximumNumber
 		ChildrenOfNumberSeriesContainer[NumberSeriesIndex].innerHTML = Math.ceil(NumberSeriesElement);
 	}
 }
-
-window.setInterval("IncreaseItemsList()", 300);
